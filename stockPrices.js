@@ -41,11 +41,11 @@ function best(arr) {
         return 0
     }
 
-    const profit = [0] 
+    const profit = []  // profit for each possible sell price
 
-    for (let i = 1; i < arr.length; i++) {
-        let localProfit = 0
-        for (let j = i - 1; j >= 0; j--) {
+    for (let i = 1; i < arr.length; i++) {  // cycle across each possible sell
+        let localProfit = 0  // max profit for the sell; seeded w/0 to ensure no loss
+        for (let j = i - 1; j >= 0; j--) {  // cycle across possible buys for the sell
             localProfit = Math.max(localProfit, arr[i] - arr[j])
         }
         profit.push(localProfit)
@@ -54,9 +54,13 @@ function best(arr) {
     return Math.max(...profit)
 }
 
+// wrapper function to run best and provide useful output
+
 function runBest(arr){
     console.log(arr, "->", best(arr))
 }
+
+// run the sample cases
 
 runBest([1, 2, 3, 4, 5])
 runBest([2, 3, 10, 6, 4, 8, 1])
