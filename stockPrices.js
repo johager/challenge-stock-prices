@@ -35,3 +35,33 @@ best([100])
 best([100, 0])
 // 0
 */
+
+function best(arr) {
+    if (arr.length < 2) {
+        return 0
+    }
+
+    const profit = [0] 
+
+    for (let i = 1; i < arr.length; i++) {
+        let localProfit = 0
+        for (let j = i - 1; j >= 0; j--) {
+            localProfit = Math.max(localProfit, arr[i] - arr[j])
+        }
+        profit.push(localProfit)
+    }
+
+    return Math.max(...profit)
+}
+
+function runBest(arr){
+    console.log(arr, "->", best(arr))
+}
+
+runBest([1, 2, 3, 4, 5])
+runBest([2, 3, 10, 6, 4, 8, 1])
+runBest([7, 9, 5, 6, 3, 2])
+runBest([0, 100])
+runBest([5, 4 , 3, 2, 1])
+runBest([100])
+runBest([100, 0])
